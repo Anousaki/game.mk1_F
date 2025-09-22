@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+dependencies {
+    implementation project(':core')
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+    // 关键：本地 native 库（包含 gdx64.dll）
+    runtimeOnly   "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+
+    // 若以后用 FreeType 字体，再加：
+    // implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+    // runtimeOnly   "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+}
+
+application {
+    // 按你的包名填写主类
+    mainClass = "com.game.desktop.DesktopLauncher"
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

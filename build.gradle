@@ -1,0 +1,6 @@
+allprojects {
+    repositories { mavenCentral() }
+}
+ext {
+    gdxVersion = '1.12.1'
+}
